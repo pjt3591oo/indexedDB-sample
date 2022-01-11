@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <div>
+      <h3>저장</h3>
+      <input type="text" id="id" placeholder="id: keypath">
+      <input type="text" id="title" placeholder="title: index">
+      <input type="text" id="body" placeholder="body">
+      <button id="add">add</button>
+    </div>
+
+    <div>
+      <h3>조회</h3>
+
+      <div>
+        <h5>keypath</h5>
+        <input type="text" id="key-path-id" placeholder="keyPath id를 입력하여 조회하세요">
+        <button id="key-path">get-keypath</button>
+      </div>
+
+      <div>
+        <h5>index</h5>
+        <input type="text" id="index-title" placeholder="인덱스인 title를 입력하여 조회하세요">
+        <button id="get-index">get-index</button>
+      </div>
+
+      <div>
+        <h3>조회결과</h3>
+        <div>
+          <span>id: </span>
+          <sapn id="search-id"></sapn>
+        </div>
+        <div>
+          <span>title: </span>
+          <sapn id="search-title"></sapn>
+        </div>
+        <div>
+          <span>body: </span>
+          <sapn id="search-body"></sapn>
+        </div>
+      </div>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>
