@@ -1,8 +1,9 @@
 
-const name = "mung";
+const dbName = "mung";
+const tableName = "memo";
 const version = 3.0;
 
-const request = indexedDB.open(name, version);
+const request = indexedDB.open(dbName, version);
 let d ;
 
 request.onupgradeneeded = e => {
@@ -13,7 +14,7 @@ request.onupgradeneeded = e => {
   const { result: db } = e.target;
 
   // 테이블 생성
-  const store = db.createObjectStore("memo", {keyPath: 'id'});
+  const store = db.createObjectStore(tableName, {keyPath: 'id'});
   
   const titleIndex = store.createIndex("by_title", "title", {unique: true});
   // const authorIndex = store.createIndex("by_author", "author");
@@ -32,8 +33,8 @@ request.error = e => {
 }
 
 document.getElementById('add').addEventListener('click', () => {
-  const tx = d.transaction('memo', 'readwrite')
-  const store = tx.objectStore('memo')
+  const tx = d.transaction(tableName, 'readwrite')
+  const store = tx.objectStore(tableName)
 
   const id = document.getElementById('id').value;
   const title = document.getElementById('title').value;
@@ -52,8 +53,8 @@ document.getElementById('add').addEventListener('click', () => {
 
 document.getElementById('key-path').addEventListener('click', () => {
   const keyPathId = document.getElementById('key-path-id').value;
-  const tx = d.transaction('memo', 'readonly')
-  const store = tx.objectStore('memo')
+  const tx = d.transaction(tableName, 'readonly')
+  const store = tx.objectStore(tableName)
   const request = store.get(keyPathId.toString());
   request.onsuccess = e => {
     const { id, title, body } = request.result;
@@ -63,8 +64,8 @@ document.getElementById('key-path').addEventListener('click', () => {
 
 document.getElementById('get-index').addEventListener('click', () => {
   const titleIndex = document.getElementById('index-title').value;
-  const tx = d.transaction('memo', 'readonly')
-  const store = tx.objectStore('memo')
+  const tx = d.transaction(tableName, 'readonly')
+  const store = tx.objectStore(tableName)
   const index = store.index('by_title');
   const request = index.get(titleIndex);
 
